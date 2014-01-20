@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
-
+from django.contrib.flatpages.models import FlatPage
 
 class Menu(models.Model):
     name = models.CharField(
@@ -59,11 +59,7 @@ class MenuItem(models.Model):
         default=500
         )
 
-    link_url = models.CharField(
-        _(u'Link URL'),
-        max_length=100,
-        help_text=_(u'URL or URI to the content, eg /about/ or http://foo.com/')
-        )
+    link_url_id = models.ForeignKey(FlatPage)
 
     title = models.CharField(
         _(u'Title'),

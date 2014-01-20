@@ -31,7 +31,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'MenuItem'},
             'anonymous_only': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'link_url': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'link_url_id': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'login_required': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'menu': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['menu.Menu']"}),
             'order': ('django.db.models.fields.IntegerField', [], {}),
