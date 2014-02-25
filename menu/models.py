@@ -25,6 +25,8 @@ class Menu(models.Model):
         null=True
         )
 
+
+
     class Meta:
         verbose_name = _(u'menu')
         verbose_name_plural = _(u'menus')
@@ -76,6 +78,13 @@ class MenuItem(models.Model):
         _(u'Anonymous only'),
         blank=True,
         help_text=_(u'Should this item only be shown to non-logged-in users?')
+        )
+    
+    class_name = models.CharField(
+        _(u'Class'),
+        max_length=100,
+        blank=True,
+        null=True
         )
 
     class Meta:

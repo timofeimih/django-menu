@@ -74,13 +74,20 @@ def get_items(menu_name, current_path, user):
         return []
 
     for i in MenuItem.objects.filter(menu=menu).order_by('order'):
-        current = ( i.link_url != '/' and current_path.startswith(i.link_url)) or ( i.link_url == '/' and current_path == '/' )
-        if menu.base_url and i.link_url == menu.base_url and current_path != i.link_url:
+        status = i.link_url_id.url
+        current = ( i.link_url_id.url != '/' and current_path.startswith(i.link_url_id.url)) or ( i.link_url_id.url == '/' and current_path == '/' )
+        if menu.base_url and i.link_url_id.url == menu.base_url and current_path != i.link_url_id.url:
             current = False
         show_anonymous = i.anonymous_only and user.is_anonymous()
         show_auth = i.login_required and user.is_authenticated()
-        if (not (i.login_required or i.anonymous_only)) or (i.login_required and show_auth) or (i.anonymous_only and show_anonymous):
-            menuitems.append({'url': i.link_url, 'title': i.title, 'current': current,})
+        #if (not (i.login_required or i.anonymous_only)) or (i.login_required and show_auth) or (i.anonymous_only and show_anonymous):
+
+
+        if current == True:
+            current = 'selected'
+        else:
+            current = ""
+        menuitems.append({'url': i.link_url_id.url,'class_name': i.class_name, 'title': i.title, 'selected': current,})
 
     if cache_time >= 0 and not debug:
         cache.set(cache_key, menuitems, cache_time)
